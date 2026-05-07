@@ -3,7 +3,6 @@
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)]()
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)]()
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)]()
 
 An automated, industry-grade computer vision pipeline designed to classify plant diseases from leaf imagery. This project leverages Transfer Learning to achieve **~97% validation accuracy** and features a lightweight, serverless-friendly web interface.
 
