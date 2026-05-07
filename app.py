@@ -9,9 +9,8 @@ st.title("🌿 AI Plant Pathology System")
 st.write("Upload a leaf image to detect potential diseases instantly.")
 
 # 2. Load Model (Cached for performance)
-@st.cache_resource
+# @st.cache_resource
 def load_model():
-    # Make sure this matches your downloaded file name
     return tf.keras.models.load_model('plant_doctor.keras', compile=False)
 
 model = load_model()
