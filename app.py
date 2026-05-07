@@ -2,16 +2,19 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+import os
 
 # 1. UI Configuration
 st.set_page_config(page_title="Plant Pathology AI", page_icon="🌿", layout="centered")
 st.title("🌿 AI Plant Pathology System")
 st.write("Upload a leaf image to detect potential diseases instantly.")
 
-# 2. Load Model (Cached for performance)
-# @st.cache_resource
+@st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('plant_doctor.keras', compile=False)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(BASE_DIR, 'plant_doctor.h5')
+    
+    return tf.keras.models.load_model(model_path, compile=False)
 
 model = load_model()
 
