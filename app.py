@@ -9,12 +9,25 @@ st.set_page_config(page_title="Plant Pathology AI", page_icon="🌿", layout="ce
 st.title("🌿 AI Plant Pathology System")
 st.write("Upload a leaf image to detect potential diseases instantly.")
 
+# 1. THE INTERCEPTOR: A custom class to scrub the bleeding-edge Colab metadata
+class SafeDense(tf.keras.layers.Dense):
+    def __init__(self, *args, **kwargs):
+        # Delete the problematic keyword before the layer tries to load it
+        kwargs.pop('quantization_config', None)
+        super().__init__(*args, **kwargs)
+
 @st.cache_resource
 def load_model():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    model_path = os.path.join(BASE_DIR, 'plant_doctor.h5')
+    # Make sure this perfectly matches your GitHub file name
+    model_path = os.path.join(BASE_DIR, 'plant_doctor.keras') 
     
-    return tf.keras.models.load_model(model_path, compile=False)
+    # 2. Tell TensorFlow to use our Safe interceptor when reading the file
+    return tf.keras.models.load_model(
+        model_path, 
+        custom_objects={'Dense': SafeDense}, # Inject the interceptor
+        compile=False
+    )
 
 model = load_model()
 
